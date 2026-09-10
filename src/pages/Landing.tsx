@@ -21,10 +21,10 @@ export default function Landing() {
     password.length === 0
       ? { label: "", level: 0, color: "red" as const }
       : passedCount === 5
-        ? { label: "Strong", level: 3, color: "red" as const }
+        ? { label: "Strong", level: 3, color: "green" as const }
         : passedCount >= 3
           ? { label: "Medium", level: 2, color: "orange" as const }
-          : { label: "Weak", level: 1, color: "green" as const };
+          : { label: "Weak", level: 1, color: "red" as const };
 
   const colorMap: Record<"red" | "orange" | "green", string> = {
     red: "#dc2626",
