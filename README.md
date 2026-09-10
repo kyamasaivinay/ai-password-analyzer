@@ -1,4 +1,4 @@
-# 🔐 AI Password Strength Analyzer
+# 🔐 AI Assisted Password Strength Analyzer
 
 A simple and responsive web application that analyzes password strength in real time based on commonly used password security rules.
 
