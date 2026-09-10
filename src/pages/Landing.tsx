@@ -48,8 +48,8 @@ export default function Landing() {
             </div>
 
             <div className="mb-6 text-center">
-              <h1 className="text-2xl font-bold tracking-tight text-gray-900">AI Password Strength Analyzer</h1>
-              <p className="mt-1.5 text-sm text-gray-500">Evaluate your password strength instantly</p>
+              <h1 className="text-2xl font-bold tracking-tight text-gray-900">AI Password Gauge</h1>
+              <p className="mt-1.5 text-sm text-gray-500">Check whether a password is weak, medium, or strong based on how it uses letters, numbers, and special characters.</p>
             </div>
 
             <div className="mb-5 flex items-center gap-3 rounded-2xl border border-gray-200/70 bg-white/70 py-2.5 pl-4 pr-10 shadow-[inset_0_1px_2px_0_rgba(255,255,255,0.8)]">
@@ -111,7 +111,7 @@ export default function Landing() {
             </ul>
           </div>
 
-          <p className="mt-6 text-center text-xs text-gray-400">Mini Project – AI Password Strength Analyzer</p>
+          <p className="mt-6 text-center text-xs text-gray-400">Mini Project – AI Password Gauge</p>
         </div>
       </div>
     </motion.div>
