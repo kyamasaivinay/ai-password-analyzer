@@ -17,18 +17,31 @@ export default function Landing() {
   const passedCount = checks.filter((c) => c.pass).length;
   const totalCount = checks.length;
 
-  const strength = password.length === 0
-    ? { label: "", level: 0, color: "bg-transparent" }
-    : passedCount <= 2
-      ? { label: "Weak", level: 1, color: "bg-red-500" }
-      : passedCount <= 3
-        ? { label: "Medium", level: 2, color: "bg-amber-400" }
-        : { label: "Strong", level: 3, color: "bg-emerald-500" };
+  const strength =
+    password.length === 0
+      ? { label: "", level: 0, color: "red" as const }
+      : passedCount === 5
+        ? { label: "Strong", level: 3, color: "red" as const }
+        : passedCount >= 3
+          ? { label: "Medium", level: 2, color: "orange" as const }
+          : { label: "Weak", level: 1, color: "green" as const };
+
+  const colorMap: Record<"red" | "orange" | "green", string> = {
+    red: "#ef4444",
+    orange: "#f59e0b",
+    green: "#22c55e",
+  };
+
+  const meterFillColor = password.length === 0 ? null : colorMap[strength.color];
+
+  const metersPseudo = password.length === 0 ? 0 : (passedCount / totalCount) * 100;
 
   const meterStyle =
     password.length === 0
       ? { width: "0%", background: "var(--muted)" }
-      : { width: `${(passedCount / totalCount) * 100}%`, background: strength.color.replace("bg-", "var(--color-") + ")" };
+      : metersPseudo <= 0.01
+        ? { width: "0%", background: meterFillColor ?? "var(--muted)" }
+        : { width: `${metersPseudo}%` as const, background: meterFillColor ?? "var(--muted)" };
 
   return (
     <motion.div
@@ -48,8 +61,8 @@ export default function Landing() {
             </div>
 
             <div className="mb-6 text-center">
-              <h1 className="text-2xl font-bold tracking-tight text-gray-900">AI Password Gauge</h1>
-              <p className="mt-1.5 text-sm text-gray-500">Check whether a password is weak, medium, or strong based on how it uses letters, numbers, and special characters.</p>
+              <h1 className="text-2xl font-bold tracking-tight text-gray-900">AI Password Strength Analyzer</h1>
+              <p className="mt-1.5 text-sm text-gray-500">Evaluate your password strength instantly</p>
             </div>
 
             <div className="mb-5 flex items-center gap-3 rounded-2xl border border-gray-200/70 bg-white/70 py-2.5 pl-4 pr-10 shadow-[inset_0_1px_2px_0_rgba(255,255,255,0.8)]">
@@ -74,7 +87,7 @@ export default function Landing() {
             {/* Strength meter */}
             <div className="mb-4 relative overflow-hidden rounded-full bg-gray-100/70 py-2.5 shadow-[inset_0_1px_2px_0_rgba(0,0,0,0.04)]">
               <div
-                className="absolute inset-y-0 left-0 rounded-full transition-[width,background-color] duration-300 ease-out"
+                className="absolute inset-y-0 left-0 rounded-full transition-[width] duration-300 ease-out"
                 style={meterStyle}
               />
               <div className="relative z-10 flex items-center justify-center">
@@ -111,7 +124,7 @@ export default function Landing() {
             </ul>
           </div>
 
-          <p className="mt-6 text-center text-xs text-gray-400">Mini Project – AI Password Gauge</p>
+          <p className="mt-6 text-center text-xs text-gray-400">Mini Project – AI Password Strength Analyzer</p>
         </div>
       </div>
     </motion.div>
