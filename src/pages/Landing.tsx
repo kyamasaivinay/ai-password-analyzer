@@ -27,9 +27,9 @@ export default function Landing() {
           : { label: "Weak", level: 1, color: "green" as const };
 
   const colorMap: Record<"red" | "orange" | "green", string> = {
-    red: "#ef4444",
-    orange: "#f59e0b",
-    green: "#22c55e",
+    red: "#dc2626",
+    orange: "#f97316",
+    green: "#16a34a",
   };
 
   const meterFillColor = password.length === 0 ? null : colorMap[strength.color];
